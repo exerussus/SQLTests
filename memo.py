@@ -34,3 +34,25 @@ conn.commit()
 users = [('00002', 'Beth', 'Solovyova', 'female'), ('00001', 'Ilya', 'Solovyov', 'male')]
 cur.executemany("INSERT INTO users VALUES(?, ?, ?, ?);", users)
 conn.commit()
+
+
+
+# Получение данных из таблицы
+cur.execute("SELECT * FROM users")
+result = cur.fetchone()
+print(result)
+
+# Получение нескольких кортежей из таблицы
+cur.execute("SELECT * FROM users")
+result = cur.fetchmany(2)
+print(result)
+
+#  Получение всех кортежей из таблицы
+cur.execute("SELECT * FROM users")
+result = cur.fetchall()
+print(result)
+
+
+#  Удаление данных из таблицы
+cur.execute("DELETE FROM users WHERE fname='Beth';")
+conn.commit()
