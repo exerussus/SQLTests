@@ -1,7 +1,7 @@
 from kivy.app import App
 
 
-class Gui(App):
+class GuiApp(App):
 
     def build(self):
 
@@ -10,11 +10,15 @@ class Gui(App):
         from kivy.uix.button import Button
         from kivy.config import Config
 
-        bl = BoxLayout()
+        Config.set('graphics', 'resizable', 0)
+        Config.set('graphics', 'width', 500)
+        Config.set('graphics', 'height', 500)
+        Config.write()
+        bl = BoxLayout(orientation='vertical')
         self.lbl = Label(text='SELECT LOGIN OPTION', font_size=40)
         bl.add_widget(self.lbl)
-        bl.add_widget(Button(text='LOG IN'))
-        bl.add_widget(Button(text='SIGN UP'))
+        bl.add_widget(Button(text='LOG IN', font_size=40))
+        bl.add_widget(Button(text='SIGN UP', font_size=40))
         return bl
 
 
