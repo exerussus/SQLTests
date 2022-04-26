@@ -51,17 +51,23 @@ class GuiApp(App):
     def login(self, instance):
 
         login = self.txt_1.text
+        print(login)
         password = self.txt_2.text
+        print(password)
         self.cur.execute("""SELECT * FROM users""")
         all_of_that = self.cur.fetchall()
+        print(all_of_that)
+        self.lbl = 'Первый тик'
 
-        for i in range(1, 9999):
-            if i in all_of_that:
-                self.cur.execute(f"SELECT * FROM users WHERE login={login}")
-                user_all = self.cur.fetchall()
-                print(user_all)
+        if login not in all_of_that:
+            self.lbl = 'Пользователя не существует'
+            print('Пользователя не существует')
+        if login in all_of_that:
 
-                break
+            self.cur.execute(f"SELECT * FROM users WHERE login={login}")
+            user_info = self.cur.fetchall()
+            print(user_info)
+
 
     def registration(self, instance):
         login = self.txt_1.text
